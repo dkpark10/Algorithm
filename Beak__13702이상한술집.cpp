@@ -54,7 +54,9 @@ int main(void)
 	for (int i = 0; i < N; i++)
 		cin >> bottle[i];
 	
-	cout << StrangeBar();
+	if (StrangeBar() == -1)
+		cout << 0;
+	else cout << StrangeBar();
 
 	return 0;
 }
