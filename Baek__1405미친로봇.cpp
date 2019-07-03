@@ -38,7 +38,7 @@ db Move(int x, int y, int act)
         if(!visited[nx][ny])
             result += prob[i] * Move(nx, ny, act - 1); // 방문한곳에 확률을 모두 더해줌
     }
-    visited[x][y]=false;
+    visited[x][y]=false;                               // 중요한 코드 한번 방문한 곳은 또 방문할 수 있기 때문에 방문하지 않음을 표시해줘야댐!!!
     return result;
 }
 
