@@ -43,14 +43,14 @@ int T, M, N, K;
 
 void Organic(int x, int y)
 {
-	if (x < 0 || y < 0 || x >= M || y >= N) 
+	if (x < 0 || y < 0 || x >= M || y >= N)  // 주어진 배열 범위 초과하면 리턴
 		return;
-	map[x][y] = 0;
+	map[x][y] = 0;                           // 0으로 다녀간 표시
 
 	for (int i = 0; i < 4; i++) {
-		int nx = x + dirx[i];
+		int nx = x + dirx[i]; 
 		int ny = y + diry[i];
-		if (map[nx][ny])
+		if (map[nx][ny])                 // 배추 있으면
 			Organic(nx, ny);
 	}
 }
@@ -79,7 +79,7 @@ int main(void)
 			}
 		}
 		printf("%d\n", worm);
-		memset(map, 0, sizeof(map));
+		memset(map, 0, sizeof(map));         // 각각 테스트케이스를 위한 초기화
 	}
 	return 0;
 }
