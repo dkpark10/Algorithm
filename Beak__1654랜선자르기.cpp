@@ -31,7 +31,7 @@ long long으로 변환해서
 #define ll long long
 using namespace std;
 
-ll bottle[10001];
+ll line[10001];
 ll MAX = (1 << 31) - 1;
 int N, K;
 
@@ -40,7 +40,7 @@ bool IsCutted(ll mid) {
 	ll sum = 0;
 
 	for (int i = 0; i < N; i++) {
-		sum += bottle[i] / mid;
+		sum += line[i] / mid;
 	}
 	if (sum >= K) return true;
 	else return false;
@@ -66,7 +66,7 @@ int main(void)
 	cin >> N >> K;
 
 	for (int i = 0; i < N; i++)
-		cin >> bottle[i];
+		cin >> line[i];
 
 	cout << Lan();
 
