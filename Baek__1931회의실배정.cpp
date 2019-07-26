@@ -16,7 +16,7 @@ typedef struct Meeting {
 	int start, end;
 }Meeting;
 
-Meeting m[100000]; // 배열의 갯수가 적을경우 런타임에러가남 왜인지는 모름 ㅡㅡ 
+Meeting m[100000]; 
 bool cmp(const Meeting& m1, const Meeting& m2) {
 	if (m1.end == m2.end)
 		return m1.start < m2.start;
