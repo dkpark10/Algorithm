@@ -14,7 +14,7 @@
 >1 2 4 3</br>
 1 2 3 4
 ## 코드 
-```
+```c++
 #include<iostream>
 #include<algorithm>
 #include<cstdio>
