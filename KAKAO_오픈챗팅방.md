@@ -84,15 +84,11 @@ def solution(record):
         temp = []
 
         if s[0][0] == 'E':
-            temp.append("E")
-            temp.append(s[1])
             nickname[s[1]] = s[2]
-            event.append(temp)
+            event.append(['E',s[1]])
 
         elif s[0][0] == 'L':
-            temp.append("L")
-            temp.append(s[1])
-            event.append(temp)
+            event.append(['L',s[1]])
         else:
             nickname[s[1]] = s[2]
 
