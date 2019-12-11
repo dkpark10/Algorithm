@@ -21,7 +21,8 @@ ios_base::sync_with_stdio(false)는 씨와 씨플플의 버퍼를 분리한다. 
 **버퍼가 분리되었으므로 cin과 scanf, gets,getchar등을 같이 사용해선 안되고** </br>
 **cout과 printf,puts,putcjar를 같이 사용해선 안된다.**
 
-##코드
+## 코드
+
 ```c++
 #include<iostream>
 using namespace std;
