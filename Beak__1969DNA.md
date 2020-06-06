@@ -1,7 +1,8 @@
 # 백준 1969번 DNA
 
 ## 문제
-[https://www.acmicpc.net/problem/1969](https://www.acmicpc.net/problem/1969)
+[https://www.acmicpc.net/problem/1969](https://www.acmicpc.net/problem/1969)</br>
+
 DNA란 어떤 유전물질을 구성하는 분자이다. 이 DNA는 서로 다른 4가지의 뉴클레오티드로 이루어져 있다
 (Adenine, Thymine, Guanine, Cytosine). 우리는 어떤 DNA의 물질을 표현할 때, 이 DNA를 이루는
 뉴클레오티드의 첫글자를 따서 표현한다. 만약에 Thymine-Adenine-Adenine-Cytosine-Thymine-Guanine-
