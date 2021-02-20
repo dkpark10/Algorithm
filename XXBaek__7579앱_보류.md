@@ -20,29 +20,38 @@
 
 ## 코드
 ```c++
-#include <cstdio>
-#include <cstring>
 #include <iostream>
-int N, M, m[101], c[101], dp[10001];
-int main(){
-    scanf("%d %d", &N, &M);
-    memset(dp, -1, sizeof(dp));
-    for(int i = 0; i < N; i++)scanf("%d", &m[i]);
-    for(int i = 0; i < N; i++)scanf("%d", &c[i]);
-    for(int i = 0; i < N; i++){
-        int cost = c[i];
-        for(int j = 10000; j >= cost; j--){
-            if(dp[j - cost] == -1)continue;
-            if(dp[j - cost] + m[i] > dp[j])dp[j] = dp[j - cost] + m[i];
-        }
-        if(dp[cost] < m[i])dp[cost] = m[i];
-    }
-    for(int i = 0; i < 10001; i++){
-        if(dp[i] >= M){
-            printf("%d", i);
-            break;
-        }
-    }
+#include <vector>
+#include <cstdio>
+#include <algorithm>
+#define PII pair<int,int>
+using namespace std;
+int main(void)
+{
+	int N, M, inp, dp[10010];
+	scanf("%d %d", &N, &M);
+	vector<PII> app(N + 1);
+	memset(dp, 0, sizeof(dp));
+
+	for (int i = 0; i < N; i++) {
+		scanf("%d", &inp); app[i].first = inp;
+	}
+	for (int i = 0; i < N; i++) {
+		scanf("%d", &inp); app[i].second = inp;
+	}
+	for (int i = 0; i < N; i++) {
+		int cost = app[i].second;
+		for (int j = 10000; j >= cost; j--) {
+			dp[j] = max(dp[j], dp[j - cost] + app[i].first);
+		}
+	}
+	for (int i = 0;; i++) {
+		if (dp[i] >= M) {
+			printf("%d\n", i);
+			break;
+		}
+	}
+	return 0;
 }
 ```
 
