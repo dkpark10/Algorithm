@@ -39,9 +39,6 @@ function solution(lines) {
     calcul(date, processed);
   });
 
-  record.sort();
-  console.log(record);
-
   for (let i = 0; i < record.length; i++) {
     let cnt = 1;
     const fir = record[i];
@@ -64,5 +61,5 @@ function solution(lines) {
 문자열은 받아서 00:00:00 시부터 흐른 시간을 초단위로 환산해준다. </br>
 시간을 파싱해서 나온 값을 배열에 담아주고 현재 처리로그부터 반복문을 돌아 계산해준다 </br>
 
-> 현재 처리로그 시작시간 + 1초가 다음 로그 시작시간보다 크다면 count up!
-  현재 처리로그 끝시간 + 1초가 다음 로그 시작시간보다 크다면 count up!
+> 현재 처리로그 시작시간 + 1초가 다음 로그 시작시간보다 크다면 count up!</br>
+  현재 처리로그 끝시간 + 1초가 다음 로그 시작시간보다 크다면 count up!</br>
