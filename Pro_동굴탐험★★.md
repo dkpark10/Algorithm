@@ -1,6 +1,6 @@
 풀이는 여기로....
 
-![https://wakanda-developer.tistory.com/12?category=953490](https://wakanda-developer.tistory.com/12?category=953490)
+[https://wakanda-developer.tistory.com/12?category=953490](https://wakanda-developer.tistory.com/12?category=953490)
 
 ```c++
 #include <string>
