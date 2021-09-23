@@ -23,6 +23,7 @@ vector<int> solution(vector<string> gems) {
 	map<string, int> gemnum;
 
 	int cnt = 0, ans = 0;
+	// 보석과 넘버링을 맵핑한다.
 	for (string& s : gems) {
 		if (gemnum.find(s) == gemnum.end()) {
 			gemnum.insert({ s, cnt++ });
@@ -32,16 +33,20 @@ vector<int> solution(vector<string> gems) {
 	vector<int>visited(cnt);
 	for (int i = 0; i < cnt; i++) {
 		int gm = gemnum[gems[i]];
+		// 각 보석 종류를 얼마나 담았는가???
 		if (visited[gm] == 0) {
 			ans++;
 		}
 		visited[gm]++;
 	}
 
+	// 처음(idx =0)쇼핑에 보석 갯수만큼 쓸어담았다면
 	if (ans == cnt) {
 		return vector<int>{ 1, cnt };
 	}
 
+	// 투포인터 알고리즘을 통해 begin, end 인덱스에 맞춰서 보석을 추가하거나 삭제
+	
 	int begin = 0, end = cnt - 1, len = 100001;
 	while (true) {
 
