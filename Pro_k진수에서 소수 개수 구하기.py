@@ -1,4 +1,3 @@
-```python 
 import math
 
 def trans(n, q):
@@ -27,5 +26,3 @@ def solution(n, k):
       answer += 1
 
   return answer
-
-```
