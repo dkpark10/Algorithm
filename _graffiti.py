@@ -1,48 +1,62 @@
-from itertools import product
+weight = [
+  [ 1, 7, 6, 7, 5, 4, 5, 3, 2, 3 ],
+  [ 7, 1, 2, 4, 2, 3, 5, 4, 5, 6 ],
+  [ 6, 2, 1, 2, 3, 2, 3, 5, 4, 5 ],
+  [ 7, 4, 2, 1, 5, 3, 2, 6, 5, 4 ],
+  [ 5, 2, 3, 5, 1, 2, 4, 2, 3, 5 ],
+  [ 4, 3, 2, 3, 2, 1, 2, 3, 2, 3 ],
+  [ 5, 5, 3, 2, 4, 2, 1, 5, 3, 2 ],
+  [ 3, 4, 5, 6, 2, 3, 5, 1, 2, 4 ],
+  [ 2, 5, 4, 5, 3, 2, 3, 2, 1, 2 ],
+  [ 3, 6, 5, 4, 5, 3, 2, 4, 2, 1 ]
+]
 
-def discount(x):
-  [percentage, price] = x
-  return price * (100 - percentage) / 100
+pad = [
+  [3,1],
+  [0,0],
+  [0,1],
+  [0,2],
+  [1,0],
+  [1,1],
+  [1,2],
+  [2,0],
+  [2,1],
+  [2,2],
+]
 
-def solution(users, emoticons):
-  answer = [0 ,0]
-  temp = [0,0]
-  discout = list(product([40, 30, 20, 10], repeat = len(emoticons)))
+dp = [[[-1 for _ in range(10)] for _ in range(10)] for _ in range(12)]
 
-  for percentage in discout:
-    discounted_price = list(map(discount, zip(percentage, emoticons)))
-    temp = [0, 0]
+def touch(current:int, left:int, right:int, numbers):
+  if current >= len(numbers):
+    return 0
 
-    for user in users:
-      pluscnt = 0
-      price = 0
+  ref = dp[current][left][right]
+  if ref != -1:
+    return ref;
 
-      for (idx, dp) in enumerate(discounted_price):
-        if percentage[idx] >= user[0]:
-          price += dp
-      
-      if price >= user[1]:
-        pluscnt += 1
-        price = 0
+  number = int(numbers[current])
 
-      temp[0] += pluscnt;
-      temp[1] += price
+  def calcost(hand: str):
+    if hand == 'l':
+      return weight[left][number]
+    return weight[right][number]
 
-    if temp[0] > answer[0]:
-      answer = temp
-    elif temp[1] > answer[1] and temp[0] == answer[0]:
-      answer[1] = temp[1]
+  if left == number or right == number:
+    dp[current][left][right] = 1 + touch(current + 1, left, right, numbers)
+    return dp[current][left][right]
 
-  return answer
+  lcost = touch(current + 1, number, right, numbers) + calcost('l')
+  rcost = touch(current + 1, left, number, numbers) + calcost('r')
 
-# users = [[40, 2900], [23, 10000], [11, 5200], [5, 5900], [40, 3100], [27, 9200], [32, 6900]]
-# emoticons = [1300, 1500, 1600, 4900]
+  dp[current][left][right] = min(lcost, rcost)
+  return dp[current][left][right]
 
-# res1 = solution(users, emoticons)
-# print(res1)
+def solution(numbers):
+  return touch(0,4,6, numbers)
 
-users = [[40, 10000], [25, 10000]]	
-emoticons = [7000, 9000]	
-
-res2 = solution(users, emoticons)
+res1 = solution("1756")
+print(res1)
+res2 = solution("5123")
 print(res2)
+
+# 오른손 엄지로 5, 왼손 엄지로 123을 누르거나 오른손 엄지로 5, 왼손 엄지로 1, 오른손 엄지로 23을 누르면 가중치 8로 최소입니다.
