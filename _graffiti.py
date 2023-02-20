@@ -24,34 +24,34 @@ pad = [
   [2,2],
 ]
 
-dp = [[[-1 for _ in range(10)] for _ in range(10)] for _ in range(12)]
+dp = [[[-1 for _ in range(10)] for _ in range(10)] for _ in range(100000)]
+global gnumbers
 
-def touch(current:int, left:int, right:int, numbers):
-  if current >= len(numbers):
+def touch(current:int, left:int, right:int):
+  global gnumbers
+
+  if current >= len(gnumbers):
     return 0
 
   ref = dp[current][left][right]
   if ref != -1:
     return ref;
 
-  number = int(numbers[current])
+  number = int(gnumbers[current])
 
-  def calcost(hand: str):
-    if hand == 'l':
-      return weight[left][number]
-    return weight[right][number]
+  result = 987654321
+  if number != right:
+    result = min(touch(current + 1, number, right) + weight[left][number], result)
+  
+  if number != left:
+    result = min(touch(current + 1, left, number) + weight[right][number], result)
 
-  if left == number or right == number:
-    dp[current][left][right] = 1 + touch(current + 1, left, right, numbers)
-    return dp[current][left][right]
-
-  lcost = touch(current + 1, number, right, numbers) + calcost('l')
-  rcost = touch(current + 1, left, number, numbers) + calcost('r')
-
-  dp[current][left][right] = min(lcost, rcost)
-  return dp[current][left][right]
+  dp[current][left][right] = result
+  return dp[current][left][right]    
 
 def solution(numbers):
+  global gnumbers
+  gnumbers = numbers
   return touch(0,4,6, numbers)
 
 res1 = solution("1756")
